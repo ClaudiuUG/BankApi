@@ -1,0 +1,1 @@
+flask --app shitty_bank run --port 5001

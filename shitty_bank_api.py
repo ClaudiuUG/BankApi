@@ -33,7 +33,7 @@ class ShittyBankApi:
             "type": type,
             "iban": iban
         })
-        while not self.check_wallet(amount, wallet_id, time()):
+        while not self.check_wallet(amount if type == "payin" else -amount, wallet_id, time()):
             return self.settle(amount, wallet_id, type, iban)
 
     def check_wallet(self, amount, wallet_id, start_time):
@@ -50,7 +50,7 @@ class ShittyBankApi:
         self.min_event_id = response_dict["events"][-1]["event_id"]
         for wallet_history_item_id in wallet_history:
             if wallet_history_item_id in self.wallet_history:
-                self.wallet_history[wallet_history_item_id].append([amount])
+                self.wallet_history[wallet_history_item_id].append(amount)
             else:
                 self.wallet_history[wallet_history_item_id] = [amount]
 

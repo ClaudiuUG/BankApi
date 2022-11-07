@@ -1,4 +1,5 @@
 from concurrent.futures import ThreadPoolExecutor
+import threading
 import string
 
 from flask import Flask, request, jsonify
@@ -23,7 +24,11 @@ def transfer_post():
     assert isinstance(amount, str)
     amount = int(amount)
     assert amount > 0
-    executor.submit(transfer, from_iban, to_iban, amount)
+
+    t = threading.Thread(target=transfer, args=(from_iban, to_iban, amount))
+    t.daemon = True
+    t.start()
+
     return jsonify(dict(result='success'))
 
 

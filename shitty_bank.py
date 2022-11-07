@@ -26,7 +26,7 @@ ERROR_RATE = 0.2
 
 # What is the probability that a random request will break the service completely
 # for a while?
-FAIL_PROBABILITY = 0.1
+FAIL_PROBABILITY = 0.02
 
 
 # "Business logic"

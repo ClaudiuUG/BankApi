@@ -1,4 +1,3 @@
-from concurrent.futures import ThreadPoolExecutor
 import threading
 import string
 
@@ -11,7 +10,6 @@ from shitty_bank_api import ShittyBankApi
 app = Flask(__name__)
 
 rand = SystemRandom()
-executor = ThreadPoolExecutor(4)
 shitty_bank_api = ShittyBankApi()
 
 
